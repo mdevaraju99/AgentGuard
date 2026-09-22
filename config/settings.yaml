@@ -1,0 +1,12 @@
+max_steps: 12
+max_retries: 2
+tool_timeout_s: 90
+llm_temperature: 0.1
+extract_max_chars: 80000
+playwright_headless: true
+search_engine: google
+sandbox_relpath: AI-Agent-Demo
+jobs_filename: .agent_jobs.json
+# Microsoft Graph (Teams API). Set GRAPH_CLIENT_ID in .env after app registration.
+graph_tenant_id: organizations
+

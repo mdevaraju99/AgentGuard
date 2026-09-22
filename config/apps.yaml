@@ -1,0 +1,41 @@
+chrome:
+  display_name: Google Chrome
+  aliases: [chrome, google chrome, google-chrome]
+  process_names: [chrome.exe]
+  executables:
+    - C:\Program Files\Google\Chrome\Application\chrome.exe
+    - C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+vscode:
+  display_name: Visual Studio Code
+  aliases: [vscode, vs code, visual studio code, code]
+  process_names: [Code.exe]
+  executables:
+    - C:\Users\{username}\AppData\Local\Programs\Microsoft VS Code\Code.exe
+    - C:\Program Files\Microsoft VS Code\Code.exe
+    - C:\Program Files (x86)\Microsoft VS Code\Code.exe
+  path_commands: [code]
+notepad:
+  display_name: Notepad
+  aliases: [notepad, notepad.exe]
+  process_names: [notepad.exe]
+  path_commands: [notepad]
+calculator:
+  display_name: Calculator
+  aliases: [calculator, calc]
+  process_names: [Calculator.exe, CalculatorApp.exe, calc.exe]
+  path_commands: [calc]
+teams:
+  display_name: Microsoft Teams
+  aliases: [teams, microsoft teams, ms teams, msteams]
+  process_names: [ms-teams.exe, Teams.exe, MSTeams.exe]
+  executables:
+    - C:\Users\{username}\AppData\Local\Microsoft\WindowsApps\ms-teams.exe
+    - C:\Users\{username}\AppData\Local\Microsoft\Teams\current\Teams.exe
+    - C:\Program Files\WindowsApps\MSTeams_8wekyb3d8bbwe\ms-teams.exe
+  path_commands: [ms-teams, msteams]
+explorer:
+  display_name: File Explorer
+  aliases: [explorer, file explorer, windows explorer]
+  process_names: [explorer.exe]
+  path_commands: [explorer]
+
