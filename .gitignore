@@ -1,0 +1,15 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.env
+*.log
+.runtime/
+AI-Agent-Demo/output/*
+!AI-Agent-Demo/output/.gitkeep
+desktop_agent.egg-info/
+dist/
+build/
+.streamlit/

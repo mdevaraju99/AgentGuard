@@ -1,0 +1,41 @@
+# Approved file-access roots for search / read / open / extract.
+# Write operations (create_file, create_folder) remain inside AI-Agent-Demo only.
+# The LLM cannot choose arbitrary paths; Python enforces this list.
+
+allow_user_directories: true
+
+# Roots that are actually searched. Comment one out to revoke access.
+enabled_user_roots:
+  - documents
+  - downloads
+  - desktop
+  # - pictures
+  # - videos
+
+user_root_paths:
+  documents: "%USERPROFILE%\\Documents"
+  downloads: "%USERPROFILE%\\Downloads"
+  desktop: "%USERPROFILE%\\Desktop"
+  pictures: "%USERPROFILE%\\Pictures"
+  videos: "%USERPROFILE%\\Videos"
+
+max_search_results: 25
+max_files_scanned: 20000
+content_scan_limit: 40
+
+skip_dir_names:
+  - node_modules
+  - .git
+  - .svn
+  - __pycache__
+  - .venv
+  - venv
+  - .cursor
+  - AppData
+  - $Recycle.Bin
+  - System Volume Information
+  - site-packages
+  - dist
+  - build
+  - .pytest_cache
+  - .mypy_cache
