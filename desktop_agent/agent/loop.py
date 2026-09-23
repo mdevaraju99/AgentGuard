@@ -8,6 +8,7 @@ from desktop_agent.agent.prompts import SYSTEM_PROMPT, history_context
 from desktop_agent.agent.state import AgentState, TaskOutcome, new_id, utcnow
 from desktop_agent.config import Settings, get_settings
 from desktop_agent.llm.provider import LLMProvider, LLMResponse, ToolCall
+from desktop_agent.safety.guardrails import refuse_message, should_allow_tools
 from desktop_agent.tools.registry import ToolRegistry, build_default_registry
 
 
@@ -128,10 +129,26 @@ class DesktopAgent:
         )
         state.emit("user_request", {"text": user_request, "session_id": session_id})
 
+        pending = self._pending.get(session_id)
+        if not should_allow_tools(
+            user_request,
+            pending=pending,
+            last_entities=state.last_entities,
+        ):
+            state.final_response = refuse_message(user_request)
+            state.task_outcome = TaskOutcome.BLOCKED
+            state.finished_at = utcnow()
+            state.emit(
+                "guardrail_blocked",
+                {"reason": "empty_or_off_topic", "text": user_request[:200]},
+            )
+            self._states[session_id] = state
+            return state
+
         messages = list(self._histories.get(session_id, []))
         if not messages:
             messages.append({"role": "system", "content": SYSTEM_PROMPT})
-        extra = history_context(state.referenced_files, state.last_entities)
+        extra = history_context(state.referenced_files, state.last_entities, user_request)
         pending = self._pending.get(session_id)
         user_content = user_request
         if pending:

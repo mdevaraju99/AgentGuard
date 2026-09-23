@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-AGENT_CODE_VERSION = "siri-ui-v22"
+AGENT_CODE_VERSION = "siri-ui-v26"
 
 SIRI_CSS = """
 <style>
@@ -209,7 +209,7 @@ def main() -> None:
                 with st.expander("Trace"):
                     st.json(turn["trace"])
 
-    prompt = st.chat_input("Ask something…")
+    prompt = (st.chat_input("Ask something…") or "").strip()
     if prompt:
         with st.spinner("Running tools…"):
             state = agent.run(prompt, session_id="streamlit")
